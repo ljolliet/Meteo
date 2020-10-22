@@ -1,0 +1,166 @@
+
+body {
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    // min-width: 550px;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+
+    .card {
+        width: 380px !important
+    }
+
+    .card#week-weather{
+        height: 280px !important
+    }
+
+    .searchbar{
+        width: 200px !important;
+        padding: 10px !important;
+        margin-right: 10px !important;
+        margin-left: 10px !important;
+    }
+
+    .search_input{
+        width: 70% !important;
+    }
+
+    .menu-btn{
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    #days div {
+        margin: 0 !important
+    }
+
+    .sm-font {
+        font-size: 15px !important
+    }
+
+    .med-font {
+        font-size: 20px !important
+    }
+
+    .large-font {
+        font-size: 55px !important
+    }
+
+}
+
+.card {
+    width: 600px;
+    height: 350px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px 4px #9E9E9E;
+    margin-top: 50px;
+    margin-bottom: 50px
+}
+
+#days div {
+    margin: 16px;
+}
+.time-font {
+    font-size: 50px
+}
+
+.sm-font {
+    font-size: 18px
+}
+
+.med-font {
+    font-size: 28px
+}
+
+.large-font {
+    font-size: 60px
+}
+
+#mapId {
+    height: 400px;
+    width: 700px;
+}
+
+.day-tmp-min{
+    color: cornflowerblue;
+}
+
+.day-tmp-max{
+    color: indianred;
+}
+
+.menu-btn {
+    margin: 30px;
+    border-radius: 25px;
+    background-color: cornflowerblue;
+    border-color: transparent;
+    min-width: 113px;
+}
+
+.searchbar{
+    height: 60px;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 20px;
+    background-color: #6f7477;
+    position: relative;
+    display: inline-block;
+    width: 450px;
+}
+
+.search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    line-height: 40px;
+    padding: 0 10px;
+    width: 80%;
+    caret-color: #5c7cf1;
+}
+
+.searchbar:hover > .search_icon{
+    background: white;
+    color: #5c7cf1;
+    transition: 0.4s linear;
+    text-decoration:none;
+}
+
+.search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 25px;
+    right: 25px;
+}
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-active,
+.autocomplete-items div:hover {
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+

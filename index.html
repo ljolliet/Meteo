@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Météo</title>
+    <link id="favicon" rel="icon" href="">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="weather.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <script src="widgets.js"></script>
+    <script src="weather.js" defer></script>
+    <script src="autocomplete.js" defer></script>
+</head>
+<body>
+<div id="menu">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div>
+                <button class="btn btn-secondary menu-btn" onclick="getGeolocation()">Me localiser</button>
+            </div>
+            <div class="searchbar">
+                <input id="search-text" class="search_input" type="text" name="" placeholder="Search..."
+                       onkeyup="addAutocomplete()">
+                <a type="button" onclick="getWeatherFromText()" class="search_icon"><i class="fas fa-search"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="data">
+    <div class="d-flex justify-content-center flex-wrap">
+        <!-- inspired by https://bbbootstrap.com/snippets/weather-widget-time-and-date-51644824 -->
+        <div id="day " class="card p-4 m-4">
+            <div class="mt-auto mb-auto d-flex justify-content-between">
+                <img class= "align-self-center" id="icon" src="" alt="icon">
+                <div class="d-flex flex-column">
+                    <h2 id="name" class="ml-auto mb-0"></h2>
+                    <p id="condition" class="ml-auto mb-0 med-font"></p>
+                    <h1 id="tmp" class=" ml-auto large-font"></h1>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div id="time" class="mt-auto ml-2">
+                    <p id="hour" class="time-font mb-0"></p>
+                    <p id="date" class="ml-2"></p>
+                </div>
+                <div id="info" class="mt-auto mr-2 d-flex flex-column">
+                    <p class="ml-auto mb-0">
+                        <i class="fas fa-wind"></i>
+                        <span id="wind"></span>
+                    </p>
+                    <p class="ml-auto mb-0">
+                        <i class="fas fa-tint"></i>
+                        <span id="humidity"></span>
+                    </p>
+                    <p class="ml-auto mb-0">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="sunrise"></span>
+                    </p>
+                    <p class="ml-auto">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-arrow-down"></i>
+                        <span id="sunset"></span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div id = "week-weather" class="card p-4 m-4">
+            <h2 class="text-center mb-4">Cette Semaine</h2>
+            <div id="days" class="d-flex justify-content-between">
+                <div id="j0" class="text-center">
+                    <p class="day-short med-font mb-0">Auj</p>
+                    <p class="day-date sm-font mb-0"></p>
+                    <img class= "align-self-center" src="" alt="icon">
+                    <p class="day-tmp-max med-font mb-0"></p>
+                    <p class="day-tmp-min med-font"></p>
+                </div>
+                <div id="j1" class="text-center">
+                    <p class="day-short med-font mb-0"></p>
+                    <p class="day-date sm-font mb-0"></p>
+                    <img class= "align-self-center" src="" alt="icon">
+                    <p class="day-tmp-max med-font mb-0"></p>
+                    <p class="day-tmp-min med-font"></p>
+                </div>
+                <div id="j2" class="text-center">
+                    <p class="day-short med-font mb-0"></p>
+                    <p class="day-date sm-font mb-0"></p>
+                    <img class= "align-self-center" src="" alt="icon">
+                    <p class="day-tmp-max med-font mb-0"></p>
+                    <p class="day-tmp-min med-font"></p>
+                </div>
+                <div id="j3" class="text-center">
+                    <p class="day-short med-font mb-0"></p>
+                    <p class="day-date sm-font mb-0"></p>
+                    <img class= "align-self-center" src="" alt="icon">
+                    <p class="day-tmp-max med-font mb-0"></p>
+                    <p class="day-tmp-min med-font"></p>
+                </div>
+                <div id="j4" class="text-center">
+                    <p class="day-short med-font mb-0"></p>
+                    <p class="day-date sm-font mb-0"></p>
+                    <img class= "align-self-center" src="" alt="icon">
+                    <p class="day-tmp-max med-font mb-0"></p>
+                    <p class="day-tmp-min med-font"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100 m-2">
+<div id="mapId">
+</div>
+    </div></div>
+</body>
+</html>
